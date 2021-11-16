@@ -16,6 +16,7 @@ iOS
 ● Integrate an API
 
 Backend
+
 ● Have an API specification for each route
 
 ● Have at least 4 routes (at least 1 GET, 1 POST)
@@ -27,8 +28,10 @@ Backend
 Midpoint requirements:
 
 iOS
+
 ○ UICollectionView or UITableView, Navigation
 
 Backend:
+
 ○ Have a database with at least one table, at least two routes
 implemented
