@@ -11,10 +11,12 @@ class PushPlaylistViewController: UIViewController {
 
     // TODO 8: set up delegate
     var index: Int
-
+    var nameLabel = UILabel()
+    var placeholderText: String?
     // TODO 10: initialize placeholder text
     init(Playlist: Playlist, index: Int){
         self.index = index
+        self.placeholderText = Playlist.Playlist + " songs"
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -28,12 +30,20 @@ class PushPlaylistViewController: UIViewController {
 
         view.backgroundColor = .white
 
-
+        nameLabel.text = placeholderText
+        nameLabel.textColor = .black
+        nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(nameLabel)
 
         setUpConstraints()
     }
 
     func setUpConstraints() {
+        NSLayoutConstraint.activate([
+            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
+            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
 
     }
     @objc func dismissViewController() {
