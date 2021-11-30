@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     private var collectionView: UICollectionView!
     
     private let cellPadding: CGFloat = 10
+    private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
     
     private var Playlists: [Playlist] = [
@@ -38,7 +39,8 @@ class ViewController: UIViewController {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = cellPadding
         layout.minimumInteritemSpacing = cellPadding
-        layout.sectionInset = UIEdgeInsets(top: 0, left: -400, bottom: 0, right: 0)
+//       layout.sectionInset = UIEdgeInsets(top: 0, left: -400, bottom: 0, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: sectionPadding, left: 0, bottom: sectionPadding, right: 0)
         
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .clear
@@ -54,12 +56,14 @@ class ViewController: UIViewController {
         setupConstraints()
     }
     func setupConstraints() {
-        let collectionViewPadding: CGFloat = 12
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -collectionViewPadding-700),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
+//            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: collectionViewPadding),
+//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -collectionViewPadding-700),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+//            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -collectionViewPadding),
+            collectionView.bottomAnchor.constraint(equalTo: collectionView.topAnchor, constant: 100),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10)
         ])
     }
 }
@@ -96,17 +100,17 @@ class ViewController: UIViewController {
                         let hardCodedPadding:CGFloat = 5
                         let itemWidth = (collectionView.bounds.width / itemsPerRow) - hardCodedPadding
                         let itemHeight = collectionView.bounds.height - (2 * hardCodedPadding)
-                        return CGSize(width: itemWidth, height: itemHeight)
+                        return CGSize(width: itemWidth*2, height: itemHeight)
            // }
         }
 
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-          // if(collectionView == self.collectionView){
-                return CGSize(width: collectionView.frame.width, height: 50)
-          //  }
-            
-
-        }
+//        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//          // if(collectionView == self.collectionView){
+//                return CGSize(width: collectionView.frame.width, height: 50)
+//          //  }
+//
+//
+//        }
 
 
          func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
