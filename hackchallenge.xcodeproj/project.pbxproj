@@ -8,17 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		50D37391D7CE4E2AC584C565 /* Pods_hackchallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10963DD337D9E7E5EDFE4A04 /* Pods_hackchallenge.framework */; };
+		A21414812756FA280055F089 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21414802756FA280055F089 /* NetworkManager.swift */; };
 		A25507F327444E0B0034402E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25507F227444E0B0034402E /* AppDelegate.swift */; };
 		A25507F527444E0B0034402E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25507F427444E0B0034402E /* SceneDelegate.swift */; };
 		A25507F727444E0B0034402E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25507F627444E0B0034402E /* ViewController.swift */; };
 		A25507FC27444E0E0034402E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A25507FB27444E0E0034402E /* Assets.xcassets */; };
 		A25507FF27444E0E0034402E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A25507FD27444E0E0034402E /* LaunchScreen.storyboard */; };
+		A299C1CA2749AF4A00B2078A /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A299C1C92749AF4A00B2078A /* SpotifyiOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		10963DD337D9E7E5EDFE4A04 /* Pods_hackchallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackchallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68FA90DF05C3B205E2ED6C93 /* Pods-hackchallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackchallenge.release.xcconfig"; path = "Target Support Files/Pods-hackchallenge/Pods-hackchallenge.release.xcconfig"; sourceTree = "<group>"; };
 		79799457F05DAE70A66FAE05 /* Pods-hackchallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackchallenge.debug.xcconfig"; path = "Target Support Files/Pods-hackchallenge/Pods-hackchallenge.debug.xcconfig"; sourceTree = "<group>"; };
+		A21414802756FA280055F089 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A25507EF27444E0B0034402E /* hackchallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackchallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25507F227444E0B0034402E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A25507F427444E0B0034402E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +29,8 @@
 		A25507FB27444E0E0034402E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A25507FE27444E0E0034402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A255080027444E0E0034402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A299C1C92749AF4A00B2078A /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpotifyiOS.framework; path = "ios-sdk-1.2.2/SpotifyiOS.framework"; sourceTree = SOURCE_ROOT; };
+		A299C1CB2749B12C00B2078A /* Pulse-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pulse-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +39,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D37391D7CE4E2AC584C565 /* Pods_hackchallenge.framework in Frameworks */,
+				A299C1CA2749AF4A00B2078A /* SpotifyiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,16 +49,17 @@
 		335BE2D6A0A82246A530734C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				A299C1C92749AF4A00B2078A /* SpotifyiOS.framework */,
 				79799457F05DAE70A66FAE05 /* Pods-hackchallenge.debug.xcconfig */,
 				68FA90DF05C3B205E2ED6C93 /* Pods-hackchallenge.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		A25507E627444E0B0034402E = {
 			isa = PBXGroup;
 			children = (
+				A299C1CB2749B12C00B2078A /* Pulse-Bridging-Header.h */,
 				A25507F127444E0B0034402E /* hackchallenge */,
 				A25507F027444E0B0034402E /* Products */,
 				335BE2D6A0A82246A530734C /* Pods */,
@@ -77,6 +84,7 @@
 				A25507FB27444E0E0034402E /* Assets.xcassets */,
 				A25507FD27444E0E0034402E /* LaunchScreen.storyboard */,
 				A255080027444E0E0034402E /* Info.plist */,
+				A21414802756FA280055F089 /* NetworkManager.swift */,
 			);
 			path = hackchallenge;
 			sourceTree = "<group>";
@@ -203,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21414812756FA280055F089 /* NetworkManager.swift in Sources */,
 				A25507F727444E0B0034402E /* ViewController.swift in Sources */,
 				A25507F327444E0B0034402E /* AppDelegate.swift in Sources */,
 				A25507F527444E0B0034402E /* SceneDelegate.swift in Sources */,
@@ -347,6 +356,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BW9C5UP4F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk-1.2.2",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hackchallenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -359,9 +373,18 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.benneuwirth.hackchallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Pulse-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -375,6 +398,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5BW9C5UP4F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ios-sdk-1.2.2",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = hackchallenge/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -387,9 +415,18 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"CFNetwork\"",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.benneuwirth.hackchallenge;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Pulse-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
