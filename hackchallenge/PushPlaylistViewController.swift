@@ -9,49 +9,62 @@ import UIKit
 
 class PushPlaylistViewController: UIViewController {
 
-    // TODO 8: set up delegate
-    var index: Int
-    var nameLabel = UILabel()
-    var placeholderText: String?
-    // TODO 10: initialize placeholder text
-    init(Playlist: Playlist, index: Int){
-        self.index = index
-        self.placeholderText = Playlist.Playlist + " songs"
-        super.init(nibName: nil, bundle: nil)
-    }
+    var tableView = UITableView()
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    let reuseIdentifier = "songCellReuse"
+    let cellHeight: CGFloat = 50
 
-
+    var songs: [Song] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Playlist"
         view.backgroundColor = .white
 
-        nameLabel.text = placeholderText
-        nameLabel.textColor = .black
-        nameLabel.font = .systemFont(ofSize: 20, weight: .bold)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(nameLabel)
 
-        setUpConstraints()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.register(SongTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        view.addSubview(tableView)
+
+        setupConstraints()
+    }
+    
+    func configure(songs: [Song]) {
+        self.songs = songs
     }
 
-    func setUpConstraints() {
+    func setupConstraints() {
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-
     }
+    
+    
     @objc func dismissViewController() {
-        // TODO 9: call delegate function
-
-           
-        // TODO 5: dismiss view controller
         dismiss(animated: true, completion: nil)
     }
+}
+extension PushPlaylistViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return songs.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? SongTableViewCell {
+            let song = songs[indexPath.row]
+            cell.configure(song: song)
+            cell.selectionStyle = .none
+            return cell
+        } else {
+            return UITableViewCell()
+        }
+    }
+
 }
 

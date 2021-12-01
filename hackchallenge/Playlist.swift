@@ -11,11 +11,13 @@ import UIKit
 
 class Playlist {
     var isSelected2: Bool
-    var Playlist: String
+    var PlaylistTitle: String
+    var songs: [Song]
+    
 
-    init (Playlist: String) {
-
-        self.Playlist = Playlist
+    init (Playlist: String, Songs: [Song]) {
+        self.songs = Songs
+        self.PlaylistTitle = Playlist
         self.isSelected2 = false;
     }
     }

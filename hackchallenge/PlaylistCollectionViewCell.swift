@@ -12,7 +12,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
 
 
     var nameLabel = UILabel()
-    private var col = UIColor(ciColor: .red)
+    private var col = UIColor(ciColor: .cyan)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,8 +20,9 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
         contentView.backgroundColor = col
-        
-        nameLabel.font = .systemFont(ofSize: 12)
+
+        nameLabel.font = .systemFont(ofSize: 15)
+        nameLabel.textAlignment = .center
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
 
@@ -34,7 +35,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(for playlist: Playlist) {
-        nameLabel.text = playlist.Playlist        
+        nameLabel.text = playlist.PlaylistTitle
 
     }
 
@@ -43,8 +44,9 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         let labelHeight: CGFloat = 20
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding),
-            nameLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+            nameLabel.heightAnchor.constraint(equalToConstant: labelHeight),
+            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
 
     }
