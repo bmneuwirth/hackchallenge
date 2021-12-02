@@ -5,7 +5,6 @@
 //  Created by Matthew Sadowski on 11/20/21.
 //
 
-
 import UIKit
 
 class PlaylistCollectionViewCell: UICollectionViewCell {

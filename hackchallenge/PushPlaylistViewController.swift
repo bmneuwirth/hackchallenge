@@ -4,7 +4,6 @@
 //
 //  Created by Matthew Sadowski on 10/20/21.
 //
-
 import UIKit
 
 class PushPlaylistViewController: UIViewController {
@@ -67,4 +66,3 @@ extension PushPlaylistViewController: UITableViewDataSource {
     }
 
 }
-

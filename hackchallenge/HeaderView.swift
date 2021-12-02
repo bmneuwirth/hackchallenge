@@ -1,8 +1,8 @@
 //
 //  HeaderView.swift
-//  L5Starter
+//  hackchallenge
 //
-//  Created by Amy Chin Siu Huang on 10/25/21.
+//  Created by Ben Neuwirth on 12/2/21.
 //
 
 import UIKit

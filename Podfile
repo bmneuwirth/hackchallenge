@@ -7,6 +7,5 @@ target 'hackchallenge' do
 
   # Pods for hackchallenge
   pod 'Alamofire'
-pod 'SnapKit'
 
 end

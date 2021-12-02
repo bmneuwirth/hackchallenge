@@ -5,7 +5,6 @@
 //  Created by Matthew Sadowski on 11/20/21.
 //
 
-
 import Foundation
 import UIKit
 
@@ -21,4 +20,3 @@ class Playlist {
         self.isSelected2 = false;
     }
     }
-
