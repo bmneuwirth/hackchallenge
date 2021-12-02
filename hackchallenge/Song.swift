@@ -17,3 +17,29 @@ class Song {
     }
     
 }
+
+struct SpotifyResponse: Codable {
+    var items: [TrackResponse]
+}
+
+struct TrackResponse: Codable {
+    var track: Track
+}
+
+struct Track: Codable {
+    var album: Album
+    var id: String
+    var name: String
+    
+}
+
+struct Album: Codable {
+    var artists: [Artist]
+    var id: String
+    var name: String
+}
+
+struct Artist: Codable {
+    var id: String
+    var name: String
+}
