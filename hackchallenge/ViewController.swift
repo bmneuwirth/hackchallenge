@@ -7,51 +7,35 @@
 
 import UIKit
 
-class ViewController: UIViewController, SPTSessionManagerDelegate {
+class ViewController: UIViewController {
 
     private var collectionView: UICollectionView!
     @IBOutlet var playlistlabel: UILabel! = UILabel()
     @IBOutlet var playlistlabel2: UILabel! = UILabel()
     @IBOutlet var playlistlabel3: UILabel! = UILabel()
-    private var playlists = [Playlist(Playlist: "Recently Played", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Your Faves", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
+    static var playlists = [Playlist(Playlist: "Recently Played", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Your Faves", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
     
-    private var spotifyLogin = UIButton()
-    private var userToken: String?
+    static var userToken: String?
     
-    let clientID = "139d462ca4644420882305fbaf7dd8e6"
-    let redirect = URL(string: "pulse-app-login://callback")!
-    
-    lazy var configuration = SPTConfiguration(
-      clientID: clientID,
-      redirectURL: redirect
-    )
-
-    lazy var sessionManager: SPTSessionManager = {
-      if let tokenSwapURL = URL(string: "https://pulse-hackchallenge.herokuapp.com/api/token"),
-         let tokenRefreshURL = URL(string: "https://pulse-hackchallenge.herokuapp.com/api/refresh_token") {
-        self.configuration.tokenSwapURL = tokenSwapURL
-        self.configuration.tokenRefreshURL = tokenRefreshURL
-        self.configuration.playURI = ""
-      }
-      let manager = SPTSessionManager(configuration: self.configuration, delegate: self)
-      return manager
-    }()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.reloadData()
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Hack Challenge"
         view.backgroundColor = .black
-                
-        spotifyLogin.setTitle("Log in with Spotify", for: .normal)
-        spotifyLogin.translatesAutoresizingMaskIntoConstraints = false
-        spotifyLogin.setTitleColor(.systemBlue, for: .normal)
-        spotifyLogin.addTarget(self, action: #selector(connectSpotify), for: .touchUpInside)
         
-        view.addSubview(spotifyLogin)
+        if ViewController.userToken == nil {
+            let vc = OpenViewController()
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
+        }
         
         UIView.animate(withDuration: 2.0) {
             self.playlistlabel.transform = self.playlistlabel.transform.translatedBy(x: 150, y: 0)
@@ -115,10 +99,6 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
     }
     
     func setupConstraints() {
-        NSLayoutConstraint.activate([
-            spotifyLogin.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            spotifyLogin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-        ])
         let collectionViewPadding: CGFloat = 30
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: playlistlabel3.bottomAnchor, constant: 20),
@@ -127,7 +107,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -collectionViewPadding)
         ])
         NSLayoutConstraint.activate([
-            playlistlabel.topAnchor.constraint(equalTo: spotifyLogin.bottomAnchor, constant: 5),
+            playlistlabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             playlistlabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             playlistlabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 75)
         ])
@@ -142,66 +122,6 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
             playlistlabel3.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 75)
         ])
     }
-    
-    func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
-        print(session.accessToken) // The magic token that you use for requests
-        userToken = session.accessToken
-        // Put stuff that happens after you connect to Spotify here
-        // Get recently played songs and send to server
-        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
-            var myPlaylist = Playlist(Playlist: "My Playlist", Songs:[])
-            for track in tracks {
-                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
-            }
-            self.playlists.append(myPlaylist)
-            self.collectionView.reloadData()
-            
-                
-        }
-        // Go to new view controller with playlist info
-    }
-    
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        self.sessionManager.application(app, open: url, options: options)
-        return true
-    }
-    
-    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
-        userToken = session.accessToken
-        // Put stuff that happens after you connect to Spotify here
-        // Get recently played songs and send to server
-        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
-            var myPlaylist = Playlist(Playlist: "My Playlist", Songs:[])
-            for track in tracks {
-                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
-            }
-            self.playlists.append(myPlaylist)
-            self.collectionView.reloadData()
-            
-                
-        }
-    }
-    
-    func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
-        presentAlertController(title: "Error", message: "Sorry, something went wrong!", buttonTitle: "OK")
-    }
-
-    @objc func connectSpotify() {
-        
-        let scope: SPTScope = [.userReadRecentlyPlayed, .playlistModifyPrivate]
-        self.sessionManager.initiateSession(with: scope, options: .default)
-        
-    }
-    
-    private func presentAlertController(title: String, message: String, buttonTitle: String) {
-        DispatchQueue.main.async {
-            let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
-            controller.addAction(action)
-            self.present(controller, animated: true)
-        }
-    }
 
 }
 
@@ -211,12 +131,12 @@ extension ViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return playlists.count
+        return ViewController.playlists.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: playlistCellReuseIdentifier, for: indexPath) as! PlaylistCollectionViewCell
-            let play = playlists[indexPath.item]
+        let play = ViewController.playlists[indexPath.item]
             cell.configure(for: play)
             return cell
     }
@@ -229,8 +149,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        playlists[indexPath.item].isSelected2.toggle()
-        let playlist = playlists[indexPath.item]
+        ViewController.playlists[indexPath.item].isSelected2.toggle()
+        let playlist = ViewController.playlists[indexPath.item]
         let vc = PushPlaylistViewController()
         vc.configure(songs: playlist.songs)
         navigationController?.pushViewController(vc, animated: true)
