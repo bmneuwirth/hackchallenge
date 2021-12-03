@@ -143,23 +143,44 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
         ])
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-      self.sessionManager.application(app, open: url, options: options)
-      return true
-    }
-    
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
         print(session.accessToken) // The magic token that you use for requests
         userToken = session.accessToken
         // Put stuff that happens after you connect to Spotify here
         // Get recently played songs and send to server
         NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
+            var myPlaylist = Playlist(Playlist: "My Playlist", Songs:[])
             for track in tracks {
-                print(track.track.name)
+                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
             }
+            self.playlists.append(myPlaylist)
+            self.collectionView.reloadData()
+            
                 
         }
         // Go to new view controller with playlist info
+    }
+    
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        self.sessionManager.application(app, open: url, options: options)
+        return true
+    }
+    
+    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
+        userToken = session.accessToken
+        // Put stuff that happens after you connect to Spotify here
+        // Get recently played songs and send to server
+        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
+            var myPlaylist = Playlist(Playlist: "My Playlist", Songs:[])
+            for track in tracks {
+                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
+            }
+            self.playlists.append(myPlaylist)
+            self.collectionView.reloadData()
+            
+                
+        }
     }
     
     func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {

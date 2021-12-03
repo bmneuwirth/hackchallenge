@@ -15,7 +15,7 @@
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>spotify</string>
+		<string></string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
