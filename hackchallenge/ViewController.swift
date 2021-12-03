@@ -13,7 +13,13 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
     @IBOutlet var playlistlabel: UILabel! = UILabel()
     @IBOutlet var playlistlabel2: UILabel! = UILabel()
     @IBOutlet var playlistlabel3: UILabel! = UILabel()
-    private var playlists = [Playlist(Playlist: "Recently Played", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Your Faves", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
+    private var playlists = [Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Your Faves", imageName: "slowrush-1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
+    let imageView : UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named:"playlist1")
+        iv.contentMode = .scaleAspectFill
+        return iv
+    }()
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
@@ -91,7 +97,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
                 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = cellPadding
+        layout.minimumLineSpacing = 100
         layout.minimumInteritemSpacing = cellPadding
         layout.sectionInset = UIEdgeInsets(top: sectionPadding, left: 0, bottom: sectionPadding, right: 0)
 
@@ -208,7 +214,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        playlists[indexPath.item].isSelected2.toggle()
+        playlists[indexPath.item].isSelected.toggle()
         let playlist = playlists[indexPath.item]
         let vc = PushPlaylistViewController()
         vc.configure(songs: playlist.songs)
