@@ -23,7 +23,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
-    
+    let spotifylogo:UIImage? = UIImage(named: "Image")
     private var spotifyLogin = UIButton()
     private var userToken: String?
     
@@ -51,10 +51,22 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
         // Do any additional setup after loading the view.
         title = "Hack Challenge"
         view.backgroundColor = .black
-                
+        //spotifyLogin.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
         spotifyLogin.setTitle("Log in with Spotify", for: .normal)
+        spotifyLogin.titleLabel?.textColor = UIColor.white
+        spotifyLogin.titleLabel?.font = UIFont(name: "Rockwell-Bold" , size: 35)
+        spotifyLogin.titleLabel?.adjustsFontSizeToFitWidth = true
+        spotifyLogin.titleLabel?.numberOfLines = 1
+        spotifyLogin.contentHorizontalAlignment = .center
+        spotifyLogin.contentMode = .center
+        spotifyLogin.center = self.view.center
+        spotifyLogin.center.x = self.view.frame.midX
+        //spotifyLogin.setImage(spotifylogo, for: UIControl.State.normal)
+        spotifyLogin.titleEdgeInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 0.0, right: 15.0)
+        spotifyLogin.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
         spotifyLogin.translatesAutoresizingMaskIntoConstraints = false
-        spotifyLogin.setTitleColor(.systemBlue, for: .normal)
+        spotifyLogin.backgroundColor = UIColor.green
+        spotifyLogin.layer.cornerRadius = 15
         spotifyLogin.addTarget(self, action: #selector(connectSpotify), for: .touchUpInside)
         
         view.addSubview(spotifyLogin)
@@ -122,7 +134,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            spotifyLogin.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            spotifyLogin.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             spotifyLogin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         let collectionViewPadding: CGFloat = 30
