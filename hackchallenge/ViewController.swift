@@ -18,6 +18,13 @@ class ViewController: UIViewController {
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
     
+    let imageView : UIImageView = {
+            let iv = UIImageView()
+            iv.image = UIImage(named:"playlist1")
+            iv.contentMode = .scaleAspectFill
+            return iv
+        }()
+    
     static var userToken: String?
     
     override func viewDidAppear(_ animated: Bool) {
