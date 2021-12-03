@@ -11,14 +11,21 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
 
 
     var nameLabel = UILabel()
-    private var col = UIColor(ciColor: .cyan)
+    private var col = UIColor.white.withAlphaComponent(1)
+    private var shapeImageView = UIImageView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        contentView.layer.cornerRadius = 8
+        shapeImageView.contentMode = .scaleAspectFill
+        shapeImageView.layer.cornerRadius = 0
+        shapeImageView.clipsToBounds = true
+        shapeImageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(shapeImageView)
+        
+        contentView.layer.cornerRadius = 100
         contentView.clipsToBounds = true
         contentView.backgroundColor = col
+        
 
         nameLabel.font = .systemFont(ofSize: 15)
         nameLabel.textAlignment = .center
@@ -35,6 +42,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
 
     func configure(for playlist: Playlist) {
         nameLabel.text = playlist.PlaylistTitle
+        shapeImageView.image = playlist.getImage()
 
     }
 
@@ -46,6 +54,12 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
             nameLabel.heightAnchor.constraint(equalToConstant: labelHeight),
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            shapeImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            shapeImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            shapeImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            shapeImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
 
     }

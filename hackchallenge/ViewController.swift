@@ -82,7 +82,7 @@ class ViewController: UIViewController {
                 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = cellPadding
+        layout.minimumLineSpacing = 100
         layout.minimumInteritemSpacing = cellPadding
         layout.sectionInset = UIEdgeInsets(top: sectionPadding, left: 0, bottom: sectionPadding, right: 0)
 
@@ -156,6 +156,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
         ViewController.playlists[indexPath.item].isSelected2.toggle()
         let playlist = ViewController.playlists[indexPath.item]
         let vc = PushPlaylistViewController()
