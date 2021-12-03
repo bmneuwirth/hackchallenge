@@ -48,7 +48,7 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         spotifyLogin.center = self.view.center
         spotifyLogin.center.x = self.view.frame.midX
         //spotifyLogin.setImage(spotifylogo, for: UIControl.State.normal)
-        spotifyLogin.titleEdgeInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 0.0, right: 15.0)
+        // spotifyLogin.titleEdgeInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 0.0, right: 15.0)
         spotifyLogin.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
         spotifyLogin.translatesAutoresizingMaskIntoConstraints = false
         spotifyLogin.backgroundColor = UIColor.green
@@ -82,7 +82,7 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         // Put stuff that happens after you connect to Spotify here
         // Get recently played songs and send to server
         NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
-            let myPlaylist = Playlist(Playlist: "My Playlist", Songs:[])
+            let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
             for track in tracks {
                 myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
             }
@@ -107,7 +107,7 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         // Put stuff that happens after you connect to Spotify here
         // Get recently played songs and send to server
         NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
-            let myPlaylist = Playlist(Playlist: "My Playlist", Songs:[])
+            let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
             for track in tracks {
                 myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
             }
@@ -129,16 +129,5 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
             self.present(controller, animated: true)
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

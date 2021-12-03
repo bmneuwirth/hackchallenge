@@ -27,10 +27,10 @@ struct TrackResponse: Codable {
 }
 
 struct Track: Codable {
-    var album: Album
+    var album: Album // change String
     var id: String
     var name: String
-    
+    // add artist String
 }
 
 struct Album: Codable {
