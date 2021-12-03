@@ -13,10 +13,12 @@ class ViewController: UIViewController {
     @IBOutlet var playlistlabel: UILabel! = UILabel()
     @IBOutlet var playlistlabel2: UILabel! = UILabel()
     @IBOutlet var playlistlabel3: UILabel! = UILabel()
-    static var playlists = [Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Your Faves", imageName: "playlist2", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
+    static var playlists = [Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber", album: "Baby"), Song(name: "Song 2", artist: "Artist 2", album: "Album"), Song(name: "Song 3", artist: "Artist 3", album: "Album"), Song(name: "Song 4", artist: "Artist 4", album: "Album"), Song(name: "Song 5", artist: "Artist 5", album: "Album")]), Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber", album: "Baby"), Song(name: "Song 2", artist: "Artist 2", album: "Album"), Song(name: "Song 3", artist: "Artist 3", album: "Album"), Song(name: "Song 4", artist: "Artist 4", album: "Album"), Song(name: "Song 5", artist: "Artist 5", album: "Album")])]
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
+    private let backgroundColor = UIColor(red: 0.13, green: 0.10, blue: 0.11, alpha: 1.00)
+    private var recentlyPlayedPlaylist: Playlist?
     
     let imageView : UIImageView = {
             let iv = UIImageView()
@@ -30,13 +32,18 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if ViewController.userToken != nil {
+        if ViewController.userToken != nil && recentlyPlayedPlaylist == nil {
             NetworkManager.getRecentlyPlayed(token: ViewController.userToken!) { tracks in
-                let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
+                self.recentlyPlayedPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
                 for track in tracks {
-                    myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
+                    let newSong = Song(name: track.track.name, artist: track.track.album.artists[0].name, album: track.track.album.name)
+                    self.recentlyPlayedPlaylist!.songs.append(newSong)
+                    NetworkManager.pushRecentlyPlayedTrack(track: newSong) { response in
+                        
+                    }
+                    
                 }
-                ViewController.playlists.append(myPlaylist)
+                ViewController.playlists.append(self.recentlyPlayedPlaylist!)
                 self.collectionView.reloadData()
             }
         }
@@ -47,7 +54,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Hack Challenge"
-        view.backgroundColor = .black
+        view.backgroundColor = backgroundColor
         
         if ViewController.userToken == nil {
             let vc = OpenViewController()
@@ -99,7 +106,7 @@ class ViewController: UIViewController {
                 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 100
+        layout.minimumLineSpacing = 30
         layout.minimumInteritemSpacing = cellPadding
         layout.sectionInset = UIEdgeInsets(top: sectionPadding, left: 0, bottom: sectionPadding, right: 0)
 

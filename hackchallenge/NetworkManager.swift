@@ -10,6 +10,8 @@ import Alamofire
 
 class NetworkManager {
     
+    private let host = "https://pulsepulse.herokuapp.com/"
+    
     static func getRecentlyPlayed(token: String, completion: @escaping ([TrackResponse]) -> Void) {
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(token)",
@@ -29,5 +31,25 @@ class NetworkManager {
                 break
             }
         }
+    }
+    
+    static func pushRecentlyPlayedTrack(track: Song, completion: @escaping ([Song]) -> Void) {
+        let parameters: [String: String] = [
+            "trackname": track.name,
+            "artist": track.artist,
+            "album": track.album
+        ]
+        AF.request("https://pulsepulse.herokuapp.com/api/top_tracks/add/", method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseData { response in
+            switch response.result {
+            case .success(let data):
+                let jsonDecoder = JSONDecoder()
+                if let postResponse = try? jsonDecoder.decode([Song].self, from: data) {
+                    completion(postResponse)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+        
     }
 }

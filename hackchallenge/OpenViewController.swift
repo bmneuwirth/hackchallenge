@@ -94,21 +94,21 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         return true
     }
     
-    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
-        print("session renewed")
-        ViewController.userToken = session.accessToken
-        // Put stuff that happens after you connect to Spotify here
-        // Get recently played songs and send to server
-        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
-            let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
-            for track in tracks {
-                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
-            }
-            ViewController.playlists.append(myPlaylist)
-            // self.collectionView.reloadData()
-        }
-        dismiss(animated: true)
-    }
+//    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
+//        print("session renewed")
+//        ViewController.userToken = session.accessToken
+//        // Put stuff that happens after you connect to Spotify here
+//        // Get recently played songs and send to server
+//        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
+//            let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
+//            for track in tracks {
+//                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
+//            }
+//            ViewController.playlists.append(myPlaylist)
+//            // self.collectionView.reloadData()
+//        }
+//        dismiss(animated: true)
+//    }
     
     func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
         presentAlertController(title: "Error", message: "Sorry, something went wrong!", buttonTitle: "OK")

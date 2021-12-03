@@ -7,13 +7,15 @@
 import Foundation
 import UIKit
 
-class Song {
+class Song: Codable {
     var name: String
     var artist: String
+    var album: String
     
-    init(name: String, artist: String) {
+    init(name: String, artist: String, album: String) {
         self.name = name
         self.artist = artist
+        self.album = album
     }
     
 }
@@ -27,10 +29,9 @@ struct TrackResponse: Codable {
 }
 
 struct Track: Codable {
-    var album: Album // change String
+    var album: Album
     var id: String
     var name: String
-    // add artist String
 }
 
 struct Album: Codable {
