@@ -29,7 +29,18 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.reloadData()
+        
+        if ViewController.userToken != nil {
+            NetworkManager.getRecentlyPlayed(token: ViewController.userToken!) { tracks in
+                let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
+                for track in tracks {
+                    myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
+                }
+                ViewController.playlists.append(myPlaylist)
+                self.collectionView.reloadData()
+            }
+        }
+        
     }
         
     override func viewDidLoad() {
