@@ -53,7 +53,8 @@ class ViewController: UIViewController {
         
         playlistlabel.text = "Hello, Cornell Student!"
         playlistlabel.font = .systemFont(ofSize: 20)
-        playlistlabel.font = UIFont(name: "DamascusBold", size: 20)
+//        playlistlabel.font = UIFont(name: "DamascusBold", size: 20)
+        playlistlabel.font = UIFont(name: "Gotham-Medium", size: 22)
         playlistlabel.textAlignment = .center
         playlistlabel.textColor = .white
         playlistlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +68,7 @@ class ViewController: UIViewController {
         
         playlistlabel2.text = " Here's What Everyone's"
         playlistlabel2.font = .systemFont(ofSize: 20)
-        playlistlabel2.font = UIFont(name: "Damascus", size: 20)
+        playlistlabel2.font = UIFont(name: "Gotham-Medium", size: 20)
         playlistlabel2.textColor = .white
         playlistlabel2.textAlignment = .center
         playlistlabel2.translatesAutoresizingMaskIntoConstraints = false
@@ -81,7 +82,7 @@ class ViewController: UIViewController {
         
         playlistlabel3.text = "Listening To At Cornell"
         playlistlabel3.font = .systemFont(ofSize: 20)
-        playlistlabel3.font = UIFont(name: "Damascus", size: 20)
+        playlistlabel3.font = UIFont(name: "Gotham-Medium", size: 20)
         playlistlabel3.textColor = .white
         playlistlabel3.textAlignment = .center
         playlistlabel3.translatesAutoresizingMaskIntoConstraints = false
@@ -107,7 +108,7 @@ class ViewController: UIViewController {
         view.addSubview(playlistlabel)
         view.addSubview(playlistlabel2)
         view.addSubview(playlistlabel3)
-        
+                
         setupConstraints()
     }
     
