@@ -78,14 +78,14 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         view.addSubview(pulselogo)
         
         textView.text = "Pulse"
-        textView.font = UIFont(name: "CenturyGothic-Bold", size: 50)
+        textView.font = UIFont(name: "Futura-Bold", size: 50)
         textView.textAlignment = .center
         textView.textColor = .white
         textView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textView)
         
         textView2.text = "Cornell's Music Heartbeat"
-        textView2.font = UIFont(name: "CenturyGothic-Bold", size: 20)
+        textView2.font = UIFont(name: "Futura-Bold", size: 20)
         textView2.textAlignment = .center
         textView2.textColor = .white
         textView2.translatesAutoresizingMaskIntoConstraints = false
