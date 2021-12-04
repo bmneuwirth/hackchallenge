@@ -19,8 +19,9 @@ class PushPlaylistViewController: UIViewController {
     var songs: [Song] = []
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = false
 
-        title = "Playlist"
         view.backgroundColor = .black
         self.view.backgroundColor = UIColor.black
         shapeImageView.contentMode = .scaleAspectFit
@@ -28,6 +29,7 @@ class PushPlaylistViewController: UIViewController {
         shapeImageView.clipsToBounds = true
         shapeImageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(shapeImageView)
+
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.register(SongTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
@@ -36,8 +38,9 @@ class PushPlaylistViewController: UIViewController {
         setupConstraints()
     }
     
-    func configure(songs: [Song], playlist: Playlist) {
-        self.songs = songs
+    func configure(playlist: Playlist) {
+        title = playlist.PlaylistTitle
+        self.songs = playlist.songs
         shapeImageView.image = playlist.getImage()
     }
 
@@ -61,11 +64,14 @@ class PushPlaylistViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
 extension PushPlaylistViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
+    
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? SongTableViewCell {

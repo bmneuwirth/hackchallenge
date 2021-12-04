@@ -10,7 +10,10 @@ import UIKit
 class OpenViewController: UIViewController, SPTSessionManagerDelegate {
     
     private var spotifyLogin = UIButton()
-    let spotifylogo:UIImage? = UIImage(named: "Image")
+    let pulselogo = UIImageView()
+    let textView = UILabel()
+    let textView2 = UILabel()
+
     
     let clientID = "139d462ca4644420882305fbaf7dd8e6"
     let redirect = URL(string: "pulse-app-login://callback")!
@@ -38,25 +41,55 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         view.backgroundColor = .black
                 
         //spotifyLogin.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
-        spotifyLogin.setTitle("Log in with Spotify", for: .normal)
-        spotifyLogin.titleLabel?.textColor = UIColor.white
-        spotifyLogin.titleLabel?.font = UIFont(name: "Rockwell-Bold" , size: 35)
-        spotifyLogin.titleLabel?.adjustsFontSizeToFitWidth = true
-        spotifyLogin.titleLabel?.numberOfLines = 1
-        spotifyLogin.contentHorizontalAlignment = .center
+        var configuration = UIButton.Configuration.filled()
+        var container = AttributeContainer()
+        container.font = UIFont(name: "Futura-Medium" , size: 20)
+        configuration.attributedTitle = AttributedString("Log In With Spotify", attributes: container)
+        configuration.buttonSize = .large
+        configuration.cornerStyle = .capsule
+        configuration.baseBackgroundColor = UIColor.purple
+        configuration.image = UIImage(systemName: "person.circle")
+        configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 25)
+        configuration.titlePadding = 10
+        configuration.imagePadding = 10
+        configuration.imagePlacement = .leading
+        configuration.imagePadding = 5
+        spotifyLogin.configuration = configuration
+
+        spotifyLogin.contentHorizontalAlignment = .right
         spotifyLogin.contentMode = .center
         spotifyLogin.center = self.view.center
         spotifyLogin.center.x = self.view.frame.midX
-        //spotifyLogin.setImage(spotifylogo, for: UIControl.State.normal)
-        // spotifyLogin.titleEdgeInsets = UIEdgeInsets(top: 5.0, left: 15.0, bottom: 0.0, right: 15.0)
-        spotifyLogin.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        spotifyLogin.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
         spotifyLogin.translatesAutoresizingMaskIntoConstraints = false
-        spotifyLogin.backgroundColor = UIColor.green
+        spotifyLogin.backgroundColor = UIColor.purple
         spotifyLogin.layer.cornerRadius = 15
         spotifyLogin.addTarget(self, action: #selector(connectSpotify), for: .touchUpInside)
         spotifyLogin.addTarget(self, action: #selector(connectSpotify), for: .touchUpInside)
         
         view.addSubview(spotifyLogin)
+        
+        pulselogo.image = UIImage(systemName: "waveform.circle")
+        pulselogo.preferredSymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 150)
+        pulselogo.contentMode = .scaleAspectFill
+        pulselogo.clipsToBounds = true
+        pulselogo.translatesAutoresizingMaskIntoConstraints = false
+        pulselogo.tintColor = UIColor.purple
+        view.addSubview(pulselogo)
+        
+        textView.text = "Pulse"
+        textView.font = UIFont(name: "Futura-Bold", size: 50)
+        textView.textAlignment = .center
+        textView.textColor = .white
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textView)
+        
+        textView2.text = "Cornell's Music Heartbeat"
+        textView2.font = UIFont(name: "Futura-Bold", size: 20)
+        textView2.textAlignment = .center
+        textView2.textColor = .white
+        textView2.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(textView2)
         
         setupConstraints()
     }
@@ -64,8 +97,19 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             spotifyLogin.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            spotifyLogin.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
-
+            spotifyLogin.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
+        ])
+        NSLayoutConstraint.activate([
+            pulselogo.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            pulselogo.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -100)
+        ])
+        NSLayoutConstraint.activate([
+            textView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            textView.bottomAnchor.constraint(equalTo: pulselogo.topAnchor, constant: -27)
+        ])
+        NSLayoutConstraint.activate([
+            textView2.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            textView2.topAnchor.constraint(equalTo: pulselogo.bottomAnchor, constant: 32)
         ])
     }
     

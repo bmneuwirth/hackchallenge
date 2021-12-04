@@ -14,8 +14,9 @@ class SongTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        nameLabel.font = .systemFont(ofSize: 14)
+        nameLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         nameLabel.textColor = UIColor.white
+
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
 
@@ -44,8 +45,7 @@ class SongTableViewCell: UITableViewCell {
         ])
         NSLayoutConstraint.activate([
             artistLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            artistLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            artistLabel.heightAnchor.constraint(equalToConstant: labelHeight)
+            artistLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor)
         ])
     }
 
