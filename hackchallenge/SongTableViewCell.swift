@@ -15,12 +15,15 @@ class SongTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         nameLabel.font = .systemFont(ofSize: 14)
+        nameLabel.textColor = UIColor.white
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
 
         artistLabel.font = .systemFont(ofSize: 12)
         artistLabel.translatesAutoresizingMaskIntoConstraints = false
+        artistLabel.textColor = UIColor.white
         contentView.addSubview(artistLabel)
+        contentView.backgroundColor = UIColor.black
 
         setupConstraints()
     }

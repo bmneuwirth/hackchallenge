@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var playlistlabel: UILabel! = UILabel()
     @IBOutlet var playlistlabel2: UILabel! = UILabel()
     @IBOutlet var playlistlabel3: UILabel! = UILabel()
-    static var playlists = [Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Shitty Songs", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
+    static var playlists = [Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Shitty Songs", imageName: "slowrush-1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
@@ -193,7 +193,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
         ViewController.playlists[indexPath.item].isSelected.toggle()
         let playlist = ViewController.playlists[indexPath.item]
         let vc = PushPlaylistViewController()
-        vc.configure(songs: playlist.songs)
+        vc.configure(songs: playlist.songs, playlist: ViewController.playlists[indexPath.item])
         navigationController?.pushViewController(vc, animated: true)
     }
 }
