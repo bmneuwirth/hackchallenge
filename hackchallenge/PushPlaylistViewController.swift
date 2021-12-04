@@ -9,18 +9,26 @@ import UIKit
 class PushPlaylistViewController: UIViewController {
 
     var tableView = UITableView()
+    private var shapeImageView = UIImageView()
+    var imageName: String = ""
+
 
     let reuseIdentifier = "songCellReuse"
     let cellHeight: CGFloat = 50
 
     var songs: [Song] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = false
 
-        view.backgroundColor = .white
+        view.backgroundColor = .black
+        self.view.backgroundColor = UIColor.black
+        shapeImageView.contentMode = .scaleAspectFit
+        shapeImageView.layer.cornerRadius = 0
+        shapeImageView.clipsToBounds = true
+        shapeImageView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(shapeImageView)
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -30,17 +38,24 @@ class PushPlaylistViewController: UIViewController {
         setupConstraints()
     }
     
-    func configure(newTitle: String, songs: [Song]) {
-        title = newTitle
-        self.songs = songs
+    func configure(playlist: Playlist) {
+        title = playlist.PlaylistTitle
+        self.songs = playlist.songs
+        shapeImageView.image = playlist.getImage()
     }
 
     func setupConstraints() {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        NSLayoutConstraint.activate([
+            shapeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            shapeImageView.bottomAnchor.constraint(equalTo: tableView.topAnchor),
+            shapeImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            shapeImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
     

@@ -11,6 +11,7 @@ class ViewController: UIViewController {
 
     private var collectionView: UICollectionView!
     @IBOutlet var playlistlabel: UILabel! = UILabel()
+
     static var playlists = [Playlist]()
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
@@ -145,7 +146,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDe
         ViewController.playlists[indexPath.item].isSelected.toggle()
         let playlist = ViewController.playlists[indexPath.item]
         let vc = PushPlaylistViewController()
-        vc.configure(newTitle: playlist.PlaylistTitle, songs: playlist.songs)
+        vc.configure(playlist: ViewController.playlists[indexPath.item])
         navigationController?.pushViewController(vc, animated: true)
     }
 }
