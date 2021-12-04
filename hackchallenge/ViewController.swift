@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet var playlistlabel: UILabel! = UILabel()
     @IBOutlet var playlistlabel2: UILabel! = UILabel()
     @IBOutlet var playlistlabel3: UILabel! = UILabel()
-    static var playlists = [Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber", album: "Baby"), Song(name: "Song 2", artist: "Artist 2", album: "Album"), Song(name: "Song 3", artist: "Artist 3", album: "Album"), Song(name: "Song 4", artist: "Artist 4", album: "Album"), Song(name: "Song 5", artist: "Artist 5", album: "Album")]), Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber", album: "Baby"), Song(name: "Song 2", artist: "Artist 2", album: "Album"), Song(name: "Song 3", artist: "Artist 3", album: "Album"), Song(name: "Song 4", artist: "Artist 4", album: "Album"), Song(name: "Song 5", artist: "Artist 5", album: "Album")])]
+    static var playlists = [Playlist(Playlist: "Recently Played", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")]), Playlist(Playlist: "Shitty Songs", imageName: "playlist1", Songs: [Song(name: "Baby", artist: "Justin Bieber"), Song(name: "Song 2", artist: "Artist 2"), Song(name: "Song 3", artist: "Artist 3"), Song(name: "Song 4", artist: "Artist 4"), Song(name: "Song 5", artist: "Artist 5")])]
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
@@ -33,17 +33,23 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if ViewController.userToken != nil && recentlyPlayedPlaylist == nil {
+            let topPlaylist = Playlist(Playlist: "Top Songs at Cornell", imageName: "playlist1", Songs: [Song]())
             NetworkManager.getRecentlyPlayed(token: ViewController.userToken!) { tracks in
                 self.recentlyPlayedPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
                 for track in tracks {
-                    let newSong = Song(name: track.track.name, artist: track.track.album.artists[0].name, album: track.track.album.name)
+                     let newAPISong = APITrack(trackname: track.track.name, artist: track.track.album.artists[0].name, album: track.track.album.name)
+                    let newSong = Song(name: track.track.name, artist: track.track.album.artists[0].name)
                     self.recentlyPlayedPlaylist!.songs.append(newSong)
-                    NetworkManager.pushRecentlyPlayedTrack(track: newSong) { response in
-                        
+                     NetworkManager.pushRecentlyPlayedTrack(track: newAPISong) { response in
                     }
-                    
                 }
+                
+                NetworkManager.getTopTracks() { topTracks in
+                    topPlaylist.setSongs(songs: topTracks)
+                }
+                
                 ViewController.playlists.append(self.recentlyPlayedPlaylist!)
+                ViewController.playlists.append(topPlaylist)
                 self.collectionView.reloadData()
             }
         }

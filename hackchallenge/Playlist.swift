@@ -28,4 +28,7 @@ class Playlist {
         guard let image = UIImage(named: imageName) else { return UIImage() }
         return image
     }
+    func setSongs(songs: [Song]) {
+        self.songs = songs
     }
+}

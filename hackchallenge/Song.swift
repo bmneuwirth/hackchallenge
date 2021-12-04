@@ -10,12 +10,10 @@ import UIKit
 class Song: Codable {
     var name: String
     var artist: String
-    var album: String
     
-    init(name: String, artist: String, album: String) {
+    init(name: String, artist: String) {
         self.name = name
         self.artist = artist
-        self.album = album
     }
     
 }
@@ -26,6 +24,17 @@ struct SpotifyResponse: Codable {
 
 struct TrackResponse: Codable {
     var track: Track
+}
+
+struct APIResponse: Codable {
+    var Tracks: [APITrack]
+}
+
+struct APITrack: Codable {
+    var trackname: String
+    var artist: String
+    var album: String
+
 }
 
 struct Track: Codable {
