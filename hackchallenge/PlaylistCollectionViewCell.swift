@@ -27,7 +27,8 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = col
         
 
-        nameLabel.font = .systemFont(ofSize: 15)
+        nameLabel.font = .systemFont(ofSize: 30, weight: .bold)
+        nameLabel.textColor = UIColor.white
         nameLabel.textAlignment = .center
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
@@ -48,10 +49,8 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
 
     func setupConstraints() {
         let padding: CGFloat = 8
-        let labelHeight: CGFloat = 20
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding),
-            nameLabel.heightAnchor.constraint(equalToConstant: labelHeight),
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])

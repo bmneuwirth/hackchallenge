@@ -16,6 +16,7 @@
 		A24B9BDB27588F0B0064BBB0 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B9BDA27588F0B0064BBB0 /* Song.swift */; };
 		A24B9BDD27588F220064BBB0 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B9BDC27588F220064BBB0 /* SongTableViewCell.swift */; };
 		A2520D26275AA89600D83628 /* OpenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2520D25275AA89600D83628 /* OpenViewController.swift */; };
+		A2520D28275AEA6500D83628 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2520D27275AEA6500D83628 /* TabBar.swift */; };
 		A25507F327444E0B0034402E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25507F227444E0B0034402E /* AppDelegate.swift */; };
 		A25507F527444E0B0034402E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25507F427444E0B0034402E /* SceneDelegate.swift */; };
 		A25507F727444E0B0034402E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A25507F627444E0B0034402E /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 		A24B9BDA27588F0B0064BBB0 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		A24B9BDC27588F220064BBB0 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		A2520D25275AA89600D83628 /* OpenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenViewController.swift; sourceTree = "<group>"; };
+		A2520D27275AEA6500D83628 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		A25507EF27444E0B0034402E /* hackchallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hackchallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A25507F227444E0B0034402E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A25507F427444E0B0034402E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				A25507F227444E0B0034402E /* AppDelegate.swift */,
+				A2520D27275AEA6500D83628 /* TabBar.swift */,
 				A25507F427444E0B0034402E /* SceneDelegate.swift */,
 				A25507F627444E0B0034402E /* ViewController.swift */,
 				A25507FB27444E0E0034402E /* Assets.xcassets */,
@@ -235,6 +238,7 @@
 				A24B9BDB27588F0B0064BBB0 /* Song.swift in Sources */,
 				A24B9BD927588EFA0064BBB0 /* PushPlaylistViewController.swift in Sources */,
 				A24B9BDD27588F220064BBB0 /* SongTableViewCell.swift in Sources */,
+				A2520D28275AEA6500D83628 /* TabBar.swift in Sources */,
 				A24B9BD327588EAA0064BBB0 /* HeaderView.swift in Sources */,
 				A21414812756FA280055F089 /* NetworkManager.swift in Sources */,
 				A25507F727444E0B0034402E /* ViewController.swift in Sources */,

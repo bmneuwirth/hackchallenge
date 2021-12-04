@@ -17,10 +17,10 @@ class PushPlaylistViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = false
 
-        title = "Playlist"
         view.backgroundColor = .white
-
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -30,7 +30,8 @@ class PushPlaylistViewController: UIViewController {
         setupConstraints()
     }
     
-    func configure(songs: [Song]) {
+    func configure(newTitle: String, songs: [Song]) {
+        title = newTitle
         self.songs = songs
     }
 
@@ -48,11 +49,14 @@ class PushPlaylistViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 }
+
 extension PushPlaylistViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songs.count
     }
+    
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? SongTableViewCell {
