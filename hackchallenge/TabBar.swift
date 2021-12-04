@@ -14,7 +14,6 @@ class TabBar: UITabBarController {
 
         view.backgroundColor = .systemBackground
         UITabBar.appearance().barTintColor = .systemBackground
-        tabBar.tintColor = .label
         tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         
         setupVCs()
@@ -32,7 +31,7 @@ class TabBar: UITabBarController {
     
     func setupVCs() {
            viewControllers = [
-            createNavController(for: ViewController(), title: "", image: UIImage(named: "house")!),
+            createNavController(for: ViewController(), title: "", image: UIImage(named: "pulse")!.withRenderingMode(.alwaysOriginal)),
            ]
         
             for vc in self.viewControllers! {

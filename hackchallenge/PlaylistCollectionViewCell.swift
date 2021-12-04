@@ -11,7 +11,7 @@ class PlaylistCollectionViewCell: UICollectionViewCell {
 
 
     var nameLabel = UILabel()
-    private var col = UIColor.white.withAlphaComponent(1)
+    private var col = UIColor.white.withAlphaComponent(0.0)
     private var shapeImageView = UIImageView()
 
     override init(frame: CGRect) {

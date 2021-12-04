@@ -16,7 +16,7 @@ class SongTableViewCell: UITableViewCell {
 
         nameLabel.font = .systemFont(ofSize: 14, weight: .semibold)
         nameLabel.textColor = UIColor.white
-
+        
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(nameLabel)
 
@@ -25,7 +25,7 @@ class SongTableViewCell: UITableViewCell {
         artistLabel.textColor = UIColor.white
         contentView.addSubview(artistLabel)
         contentView.backgroundColor = UIColor.black
-
+        
         setupConstraints()
     }
 

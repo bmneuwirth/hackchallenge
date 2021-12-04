@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		50D37391D7CE4E2AC584C565 /* Pods_hackchallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10963DD337D9E7E5EDFE4A04 /* Pods_hackchallenge.framework */; };
 		A21414812756FA280055F089 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21414802756FA280055F089 /* NetworkManager.swift */; };
-		A24B9BD327588EAA0064BBB0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B9BD227588EA90064BBB0 /* HeaderView.swift */; };
 		A24B9BD527588EC40064BBB0 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B9BD427588EC40064BBB0 /* Playlist.swift */; };
 		A24B9BD727588EDF0064BBB0 /* PlaylistCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B9BD627588EDF0064BBB0 /* PlaylistCollectionViewCell.swift */; };
 		A24B9BD927588EFA0064BBB0 /* PushPlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24B9BD827588EFA0064BBB0 /* PushPlaylistViewController.swift */; };
@@ -30,7 +29,6 @@
 		68FA90DF05C3B205E2ED6C93 /* Pods-hackchallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackchallenge.release.xcconfig"; path = "Target Support Files/Pods-hackchallenge/Pods-hackchallenge.release.xcconfig"; sourceTree = "<group>"; };
 		79799457F05DAE70A66FAE05 /* Pods-hackchallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackchallenge.debug.xcconfig"; path = "Target Support Files/Pods-hackchallenge/Pods-hackchallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		A21414802756FA280055F089 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		A24B9BD227588EA90064BBB0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		A24B9BD427588EC40064BBB0 /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		A24B9BD627588EDF0064BBB0 /* PlaylistCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistCollectionViewCell.swift; sourceTree = "<group>"; };
 		A24B9BD827588EFA0064BBB0 /* PushPlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushPlaylistViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				A25507FD27444E0E0034402E /* LaunchScreen.storyboard */,
 				A255080027444E0E0034402E /* Info.plist */,
 				A21414802756FA280055F089 /* NetworkManager.swift */,
-				A24B9BD227588EA90064BBB0 /* HeaderView.swift */,
 				A24B9BD427588EC40064BBB0 /* Playlist.swift */,
 				A24B9BD627588EDF0064BBB0 /* PlaylistCollectionViewCell.swift */,
 				A24B9BD827588EFA0064BBB0 /* PushPlaylistViewController.swift */,
@@ -239,7 +236,6 @@
 				A24B9BD927588EFA0064BBB0 /* PushPlaylistViewController.swift in Sources */,
 				A24B9BDD27588F220064BBB0 /* SongTableViewCell.swift in Sources */,
 				A2520D28275AEA6500D83628 /* TabBar.swift in Sources */,
-				A24B9BD327588EAA0064BBB0 /* HeaderView.swift in Sources */,
 				A21414812756FA280055F089 /* NetworkManager.swift in Sources */,
 				A25507F727444E0B0034402E /* ViewController.swift in Sources */,
 				A25507F327444E0B0034402E /* AppDelegate.swift in Sources */,

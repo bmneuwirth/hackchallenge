@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     private let cellPadding: CGFloat = 10
     private let sectionPadding: CGFloat = 5
     private let playlistCellReuseIdentifier = "playlistCellReuseIdentifier"
-    private let backgroundColor = UIColor.black
+    private let backgroundColor = UIColor(red: 0.90, green: 0.80, blue: 0.93, alpha: 1.00)
     private var recentlyPlayedPlaylist: Playlist?
     
     let imageView : UIImageView = {
@@ -32,9 +32,9 @@ class ViewController: UIViewController {
         super.viewDidAppear(animated)
                 
         if ViewController.userToken != nil && recentlyPlayedPlaylist == nil {
-            let topPlaylist = Playlist(Playlist: "Top Songs at Cornell", imageName: "playlist1", Songs: [Song]())
+            let topPlaylist = Playlist(Playlist: "Top Songs at Cornell", imageName: "record2", Songs: [Song]())
             NetworkManager.getRecentlyPlayed(token: ViewController.userToken!) { tracks in
-                self.recentlyPlayedPlaylist = Playlist(Playlist: "My Recently Played", imageName: "playlist1", Songs:[])
+                self.recentlyPlayedPlaylist = Playlist(Playlist: "My Recently Played", imageName: "record", Songs:[])
                 for track in tracks {
                      let newAPISong = APITrack(trackname: track.track.name, artist: track.track.album.artists[0].name, album: track.track.album.name)
                     let newSong = Song(name: track.track.name, artist: track.track.album.artists[0].name)

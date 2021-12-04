@@ -22,8 +22,7 @@ class PushPlaylistViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = false
 
-        view.backgroundColor = .black
-        self.view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor(red: 0.90, green: 0.80, blue: 0.93, alpha: 1.00)
         shapeImageView.contentMode = .scaleAspectFit
         shapeImageView.layer.cornerRadius = 0
         shapeImageView.clipsToBounds = true
@@ -32,6 +31,7 @@ class PushPlaylistViewController: UIViewController {
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
+        tableView.backgroundColor = UIColor.black
         tableView.register(SongTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         view.addSubview(tableView)
 
@@ -49,7 +49,7 @@ class PushPlaylistViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -70)
         ])
         NSLayoutConstraint.activate([
             shapeImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

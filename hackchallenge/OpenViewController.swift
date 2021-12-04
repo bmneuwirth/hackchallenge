@@ -11,7 +11,6 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
     
     private var spotifyLogin = UIButton()
     let pulselogo = UIImageView()
-    let textView = UILabel()
     let textView2 = UILabel()
 
     
@@ -38,7 +37,7 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         super.viewDidLoad()
 
         title = "Hack Challenge"
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(red: 0.90, green: 0.80, blue: 0.93, alpha: 1.00)
                 
         //spotifyLogin.imageView?.contentMode = UIView.ContentMode.scaleAspectFit
         var configuration = UIButton.Configuration.filled()
@@ -47,7 +46,7 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         configuration.attributedTitle = AttributedString("Log In With Spotify", attributes: container)
         configuration.buttonSize = .large
         configuration.cornerStyle = .capsule
-        configuration.baseBackgroundColor = UIColor.purple
+        configuration.baseBackgroundColor = UIColor(red: 0.38, green: 0.00, blue: 1.00, alpha: 1.00)
         configuration.image = UIImage(systemName: "person.circle")
         configuration.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 25)
         configuration.titlePadding = 10
@@ -62,32 +61,26 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         spotifyLogin.center.x = self.view.frame.midX
         spotifyLogin.frame = CGRect(x: 0, y: 0, width: 150, height: 50)
         spotifyLogin.translatesAutoresizingMaskIntoConstraints = false
-        spotifyLogin.backgroundColor = UIColor.purple
+        spotifyLogin.backgroundColor = UIColor(red: 0.38, green: 0.00, blue: 1.00, alpha: 1.00)
         spotifyLogin.layer.cornerRadius = 15
         spotifyLogin.addTarget(self, action: #selector(connectSpotify), for: .touchUpInside)
         spotifyLogin.addTarget(self, action: #selector(connectSpotify), for: .touchUpInside)
         
         view.addSubview(spotifyLogin)
         
-        pulselogo.image = UIImage(systemName: "waveform.circle")
+        pulselogo.image = UIImage(named: "bigPulse")
         pulselogo.preferredSymbolConfiguration = UIImage.SymbolConfiguration(pointSize: 150)
         pulselogo.contentMode = .scaleAspectFill
         pulselogo.clipsToBounds = true
         pulselogo.translatesAutoresizingMaskIntoConstraints = false
         pulselogo.tintColor = UIColor.purple
         view.addSubview(pulselogo)
-        
-        textView.text = "Pulse"
-        textView.font = UIFont(name: "Futura-Bold", size: 50)
-        textView.textAlignment = .center
-        textView.textColor = .white
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(textView)
+
         
         textView2.text = "Cornell's Music Heartbeat"
         textView2.font = UIFont(name: "Futura-Bold", size: 20)
         textView2.textAlignment = .center
-        textView2.textColor = .white
+        textView2.textColor = .black
         textView2.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textView2)
         
@@ -104,12 +97,8 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
             pulselogo.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -100)
         ])
         NSLayoutConstraint.activate([
-            textView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            textView.bottomAnchor.constraint(equalTo: pulselogo.topAnchor, constant: -27)
-        ])
-        NSLayoutConstraint.activate([
             textView2.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            textView2.topAnchor.constraint(equalTo: pulselogo.bottomAnchor, constant: 32)
+            textView2.topAnchor.constraint(equalTo: pulselogo.bottomAnchor, constant: 27)
         ])
     }
     
