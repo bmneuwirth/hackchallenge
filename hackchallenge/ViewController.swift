@@ -96,8 +96,6 @@ class ViewController: UIViewController {
 
         view.addSubview(collectionView)
 
-//        view.addSubview(playlistlabel)
-        
         setupConstraints()
     }
     
