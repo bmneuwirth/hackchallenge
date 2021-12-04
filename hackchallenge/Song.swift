@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-class Song {
+class Song: Codable {
     var name: String
     var artist: String
     
@@ -26,11 +26,21 @@ struct TrackResponse: Codable {
     var track: Track
 }
 
+struct APIResponse: Codable {
+    var Tracks: [APITrack]
+}
+
+struct APITrack: Codable {
+    var trackname: String
+    var artist: String
+    var album: String
+
+}
+
 struct Track: Codable {
-    var album: Album // change String
+    var album: Album
     var id: String
     var name: String
-    // add artist String
 }
 
 struct Album: Codable {

@@ -121,20 +121,13 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
     }
     
     func sessionManager(manager: SPTSessionManager, didInitiate session: SPTSession) {
+        print("session initiated")
         print(session.accessToken) // The magic token that you use for requests
         ViewController.userToken = session.accessToken
         // Put stuff that happens after you connect to Spotify here
         // Get recently played songs and send to server
-        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
-            let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
-            for track in tracks {
-                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
-            }
-            ViewController.playlists.append(myPlaylist)
-            
-                
-        }
-        DispatchQueue.main.async {
+        
+        DispatchQueue.main.sync {
             self.dismiss(animated: true)
         }
         // Go to new view controller with playlist info
@@ -145,19 +138,21 @@ class OpenViewController: UIViewController, SPTSessionManagerDelegate {
         return true
     }
     
-    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
-        ViewController.userToken = session.accessToken
-        // Put stuff that happens after you connect to Spotify here
-        // Get recently played songs and send to server
-        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
-            let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
-            for track in tracks {
-                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
-            }
-            ViewController.playlists.append(myPlaylist)
-        }
-        dismiss(animated: true)
-    }
+//    func sessionManager(manager: SPTSessionManager, didRenew session: SPTSession) {
+//        print("session renewed")
+//        ViewController.userToken = session.accessToken
+//        // Put stuff that happens after you connect to Spotify here
+//        // Get recently played songs and send to server
+//        NetworkManager.getRecentlyPlayed(token: session.accessToken) { tracks in
+//            let myPlaylist = Playlist(Playlist: "My Playlist", imageName: "playlist1", Songs:[])
+//            for track in tracks {
+//                myPlaylist.songs.append(Song(name: track.track.name, artist: track.track.album.artists[0].name))
+//            }
+//            ViewController.playlists.append(myPlaylist)
+//            // self.collectionView.reloadData()
+//        }
+//        dismiss(animated: true)
+//    }
     
     func sessionManager(manager: SPTSessionManager, didFailWith error: Error) {
         presentAlertController(title: "Error", message: "Sorry, something went wrong!", buttonTitle: "OK")
